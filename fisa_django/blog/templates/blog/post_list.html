@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for p in post_list %}
+        <!-- bootstrap에서 card 가져오기 -->
+        <div class="card d-flex justify-content-between" style="width: 60rem;">
+            {% if p.head_image %}
+            <img src="{{ p.head_image.url}}" class="card-img-top" alt="...">
+            <!-- 장고는 이미지 업로드를 위한 ImageField를 제공함.  -->
+            {% endif %}
+            <div class="card-body">
+            <h5 class="card-title"><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h5>
+            <h6> {{ p.created_at }} </h6>
+            <p class="card-text">{{ p.content }}</p>
+            <div class="card-end"> 
+            <span>#작성자명</span>
+            <a href="{{ p.get_absolute_url }}" class="btn btn-dark">더 보기</a>
+            </div>
+        </div>
+     
+    {% endfor %}
+</body>
+</html>
