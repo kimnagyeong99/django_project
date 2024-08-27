@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block page_area %}
+
+                            <!-- Post content-->
+                            <article>
+                                <!-- Post header-->
+                                <header class="mb-4">
+                                    <!-- Post title-->
+                                    <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
+                                    <!-- Post meta content-->
+                                    <div class="text-muted fst-italic mb-2">{{ post.created_at }}</div>
+                                    <!-- Post categories-->
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                                </header>
+                                <!-- Preview image figure-->
+                                {% if post.head_image %}
+                                <figure class="mb-4">
+                                    <img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="..." /></figure>
+                                {% endif %}
+                                    <!-- Post content-->
+                                <section class="mb-5">
+                                    <p class="fs-5 mb-4"> {{ post.content }}</p>
+                                    {% if post.file_upload %}
+                                    <a href="{{ post.file_upload.url }}" class="btn btn-dark">다운로드</a>
+                                    {% endif %}
+                                </section>
+                            </article> 
+
+{% endblock %}
