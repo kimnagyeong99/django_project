@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "blog",
     "board", #마지막 줄에도 기왕이면 ,를 찍어주세요.
-    "account",
+    # "account",
+    'allauth',
+    'allauth.account',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "fisa_django.urls"
@@ -74,7 +79,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "fisa_django.wsgi.application"
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
 
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -110,6 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 now = timezone.now()
 
 LANGUAGE_CODE = "en-us"
+#LANGUAGE_CODE = "ko-kr" : 한글로 나옴.. 
 
 TIME_ZONE = 'Asia/Seoul'
 
@@ -132,3 +144,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media') 
 
 LOGIN_REDIRECT_URL = 'blog_app:post_list' # 로그인 성공시 보내줄 리다이렉트 주소
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

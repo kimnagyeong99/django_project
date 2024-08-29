@@ -32,6 +32,24 @@
                     <li class="nav-item"><a class="nav-link" href="#three">Technical Editor</a></li>
                 </ul>
 
+                {% if user.is_authenticated %}   
+                {# 로그인 상태이면 #}
+                    {# 본인 ID #}
+                    <span class="text-secondary fw-bold"> <a href="{% url 'account_change_password' %}">{{ user.username }} </a> </span>&nbsp;
+                    {# 로그아웃 버튼 #}
+                    <a class="btn btn-secondary" href="{% url 'account_logout' %}" role="button">Logout</a>&nbsp;&nbsp;
+                    {# 회원탈퇴 버튼 #}
+                    <a class="btn btn-secondary" href="{% url 'blog_app:user_delete' %}" role="button">회원탈퇴</a>&nbsp;&nbsp;
+                {% else %}
+                {# 로그아웃 상태이면 #}
+                    {# 로그인 버튼 #}
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#loginModal"><a href="{% url 'account_login' %}">Login</a>
+                    {# 회원 가입 버튼 - 직접 연결해보세요. #}&nbsp;
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#loginModal"><a href="{% url 'account_signup' %}">signup</a>
+                    <!--<a class="btn btn-secondary" href="{% url 'account_signup' %}" role="button">signup</a>&nbsp;&nbsp;-->
+                    <!--<a class="btn btn-secondary" href="/accounts/signup" role="button">signup</a>&nbsp;&nbsp;-->
+                {% endif %}
+
             </div>
         </div>
     </nav>
@@ -42,7 +60,7 @@
 {% endblock %}
 
 <!-- Footer-->
-<div id="footer" class="bg-dark py-4 mt-auto">
+<div id="footer" class="bg-dark py-4 mt-auto fixed-bottom">
     <div class="container px-5">
         <div class="row align-items-center justify-content-between flex-column flex-sm-row">
             <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; NAGYEONGKIM 2024</div></div>
