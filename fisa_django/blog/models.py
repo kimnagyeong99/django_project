@@ -36,7 +36,7 @@ class Post(models.Model):
 
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     tag = models.ManyToManyField(Tag)
-    file_upload = models.FileField(upload_to='blog/files/%Y/%m/%d', blank=True)
+    file_upload = models.FileField(upload_to='blog/files/%Y/%m/%d/', blank=True)
 
     # blog/models.py
     def __str__(self):

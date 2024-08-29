@@ -47,6 +47,10 @@ class PostCreate(LoginRequiredMixin, CreateView):
                         tag.slug = slugify(t, allow_unicode=True)
                         tag.save()
                     self.object.tag.add(tag)
+            return response
+
+        else:
+                return redirect('/blog/')
 
 
 class PostList(ListView):   # post_list.html, post-list
