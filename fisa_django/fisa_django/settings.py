@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "blog",
     "board", #마지막 줄에도 기왕이면 ,를 찍어주세요.
+    "account",
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media') 
+
+LOGIN_REDIRECT_URL = 'blog_app:post_list' # 로그인 성공시 보내줄 리다이렉트 주소
