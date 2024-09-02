@@ -59,7 +59,7 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now=True) 
 
     def __str__(self):
-        return f'[[{self.pk}] {self.title}]'
+        return f'[[{self.pk}] {self.content}]'
     
     def get_absolute_url(self):
         return f'{self.post.get_absolute_url()}#comment-{self.pk}' # #을 단 이유 : html에서 ID
